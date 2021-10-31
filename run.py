@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -26,10 +25,10 @@ def get_sales_date():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter you data here: ")
+        data_str = input("Enter you data here:\n")
 
         sales_data = data_str.split(",")
-    
+        
         if validate_data(sales_data):
             print("Data is valid")
             break
@@ -109,13 +108,13 @@ def calculate_surplus_data(sales_row):
 
 def get_last_5_entries_sales():
     """
-    Collects colluns of data from sales worksheet, collecting 
+    Collects colluns of data from sales worksheet, collecting
     the last 5 entries for each sandwich and returns the data
     as a list of lists.
     """
     sales = SHEET.worksheet("sales")
     columns = []
-    for ind in range(1,7):
+    for ind in range(1, 7):
         column = sales.col_values(ind)
         columns.append(column[-5:])
 
